@@ -76,6 +76,8 @@ int main(int argc, char *argv[])
 
     // determine padding for scanlines
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    
+    int condition = -1;
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
@@ -85,19 +87,31 @@ int main(int argc, char *argv[])
         {
             // temporary storage
             RGBTRIPLE triple;
-
-            if((i <= (2 * biHeight)/3 && i >= biHeight/3) && (j <= (2 * bi.biWidth)/3 && j >= bi.biWidth/3))
+            
+            if(condition < 0)
             {
-            	triple.rgbtRed = 255;
-            	triple.rgbtGreen = 255;
-            	triple.rgbtBlue = 255;
-            } else
-            {
-            	triple.rgbtRed = 0;
-            	triple.rgbtGreen = 255;
-            	triple.rgbtBlue = 0;
+            	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+            	condition = triple.rgbtGreen == 255 && triple.rgbtRed == 0 && triple.rgbtBlue == 0 ? 1 : 2;
             }
+            
+            if(condition == 1)
+            {
 
+            	if(i <= (2 * biHeight)/3 && i >= biHeight/3 && j <= (2 * bi.biWidth)/3 && j >= bi.biWidth/3)
+            	{
+            		triple.rgbtRed = 255;
+            		triple.rgbtGreen = 255;
+            		triple.rgbtBlue = 255;
+            	} else
+            	{
+            		triple.rgbtRed = 0;
+            		triple.rgbtGreen = 255;
+            		triple.rgbtBlue = 0;
+            	}
+	    } else
+	    {
+	    	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+	    }
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
         }
