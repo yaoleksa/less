@@ -92,12 +92,13 @@ int main(int argc, char *argv[])
             {
             	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
             	condition = triple.rgbtGreen == 255 && triple.rgbtRed == 0 && triple.rgbtBlue == 0 ? 1 : 2;
+            	i = 0; j = 0;
             }
             
             if(condition == 1)
             {
 
-            	if(i <= (2 * biHeight)/3 && i >= biHeight/3 && j <= (2 * bi.biWidth)/3 && j >= bi.biWidth/3)
+            	if(i <= (2 * biHeight)/3 + 1 && i >= biHeight/3 + 1 && j <= (2 * bi.biWidth)/3 + 1 && j >= bi.biWidth/3 + 1)
             	{
             		triple.rgbtRed = 255;
             		triple.rgbtGreen = 255;
@@ -108,7 +109,7 @@ int main(int argc, char *argv[])
             		triple.rgbtGreen = 255;
             		triple.rgbtBlue = 0;
             	}
-	    } else
+	    } else if(i > 0 || j > 0)
 	    {
 	    	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 	    }
