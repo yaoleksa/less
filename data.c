@@ -1,4 +1,4 @@
-// Copies a BMP file
+// Fetch metadata from a BMP file
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,7 +42,18 @@ int main(int argc, char *argv[])
         return 4;
     }
 
-    printf("width = %d; height = %d\n", bi.biWidth, bi.biHeight);
+    printf("width = %d; height = %d\n\n\n", bi.biWidth, bi.biHeight);
+    
+    for(int i = 0; i < abs(bi.biHeight); i++)
+    {
+    	for(int j = 0; j < bi.biWidth; j++)
+    	{
+    		RGBTRIPLE triple;
+    		fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+    		printf("i = %d, j = %d, red = %d, green = %d, blue = %d\n", i, j, triple.rgbtRed, 
+    		triple.rgbtGreen, triple.rgbtBlue);
+    	}
+    }
 
     
     fclose(inptr);

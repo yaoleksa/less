@@ -1,4 +1,4 @@
-// Copies a BMP file
+// Resize a BMP file
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
             if(condition == 1)
             {
 
-            	if(i <= (2 * biHeight)/3 + 1 && i >= biHeight/3 + 1 && j <= (2 * bi.biWidth)/3 + 1 && j >= bi.biWidth/3 + 1)
+            	if(i < (2 * biHeight)/3 && i >= biHeight/3 && j < (2 * bi.biWidth)/3 && j >= bi.biWidth/3)
             	{
             		triple.rgbtRed = 255;
             		triple.rgbtGreen = 255;
