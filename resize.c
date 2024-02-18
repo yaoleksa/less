@@ -109,8 +109,19 @@ int main(int argc, char *argv[])
             		triple.rgbtGreen = 255;
             		triple.rgbtBlue = 0;
             	}
-	    } else if(i > 0 || j > 0)
+	    } else if(condition == 2)
 	    {
+	    	if(j < biHeight * 0.25 || j >= biHeight * 0.75)
+	    	{
+	    		triple.rgbtRed = 255;
+            		triple.rgbtGreen = 255;
+            		triple.rgbtBlue = 255;
+	    	} else
+	    	{
+	    		triple.rgbtRed = 255;
+            		triple.rgbtGreen = 0;
+            		triple.rgbtBlue = 0;
+	    	}
 	    	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 	    }
             // write RGB triple to outfile
