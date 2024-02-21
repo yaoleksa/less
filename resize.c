@@ -80,10 +80,10 @@ int main(int argc, char *argv[])
     int condition = -1;
 
     // iterate over infile's scanlines
-    for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
+    for (float i = 0, biHeight = (float)abs(bi.biHeight); i < biHeight; i++)
     {
         // iterate over pixels in scanline
-        for (int j = 0; j < bi.biWidth; j++)
+        for (float j = 0; j < (float)bi.biWidth; j++)
         {
             // temporary storage
             RGBTRIPLE triple;
@@ -111,18 +111,26 @@ int main(int argc, char *argv[])
             	}
 	    } else if(condition == 2)
 	    {
-	    	if(j < biHeight * 0.25 || j >= biHeight * 0.75)
+	        // firstly try to make a copy
+	    	if( (i == 0 && (j >=2 && j <= 5) ) ||
+	    	(i == 1 && (j == 1 || j == 6) ) ||
+	    	(i == 2 && (j == 0 || j == 2 || j == 5 || j == 7) ) ||
+	    	(i == 3 && (j == 0 || j == 7) ) ||
+	    	(i == 4 && (j == 0 || j == 2 || j == 5 || j == 7) ) ||
+	    	(i == 5 && (j == 0 || j == 3 || j == 4 || j == 7) ) ||
+	    	(i == 6 && (j == 1 || j == 6) ) ||
+	    	(i == 7 && (j >= 2 && j <= 5) ) )
 	    	{
+	    		// first of all define a red color
 	    		triple.rgbtRed = 255;
-            		triple.rgbtGreen = 255;
-            		triple.rgbtBlue = 255;
+	    		triple.rgbtGreen = 0;
+	    		triple.rgbtBlue = 0;
 	    	} else
 	    	{
 	    		triple.rgbtRed = 255;
-            		triple.rgbtGreen = 0;
-            		triple.rgbtBlue = 0;
+	    		triple.rgbtGreen = 255;
+	    		triple.rgbtBlue = 255;
 	    	}
-	    	fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 	    }
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
