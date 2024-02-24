@@ -41,8 +41,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 4;
     }
-
-    printf("width = %d; height = %d\n\n\n", bi.biWidth, bi.biHeight);
     
     for(int i = 0; i < abs(bi.biHeight); i++)
     {
@@ -54,7 +52,7 @@ int main(int argc, char *argv[])
     		triple.rgbtGreen, triple.rgbtBlue);
     	}
     }
-
+    printf("width = %d; height = %d\n\n\n", bi.biWidth, bi.biHeight);
     
     fclose(inptr);
 
