@@ -113,7 +113,9 @@ int main(int argc, char *argv[])
 	    {
 	        // firstly try to make a copy
 	    	if((i < 0.125 * biHeight || j < 0.125 * bi.biWidth) && (j > 0.25 * bi.biWidth - 1 && j < 0.75 * bi.biWidth) ||
-	    	(i >= 0.875 * biHeight || j >= 0.875 * bi.biWidth) && (j > 0.25 * bi.biWidth - 1 && j < 0.75 * bi.biWidth))
+	    	(i >= 0.875 * biHeight || j >= 0.875 * bi.biWidth) && (j > 0.25 * bi.biWidth - 1 && j < 0.75 * bi.biWidth) ||
+	    	(j < 0.125 * biHeight || i < 0.125 * bi.biWidth) && (i > 0.25 * bi.biWidth - 1 && i < 0.75 * bi.biWidth) ||
+	    	(j >= 0.875 * biHeight || i >= 0.875 * bi.biWidth) && (i > 0.25 * bi.biWidth - 1 && i < 0.75 * bi.biWidth))
 	    	{
 	    		// first of all define a red color
 	    		triple.rgbtRed = 255;
