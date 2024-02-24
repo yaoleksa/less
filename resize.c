@@ -116,8 +116,8 @@ int main(int argc, char *argv[])
 	    	(i >= 0.875 * biHeight || j >= 0.875 * bi.biWidth) && (j > 0.25 * bi.biWidth - 1 && j < 0.75 * bi.biWidth) ||
 	    	(j < 0.125 * biHeight || i < 0.125 * bi.biWidth) && (i > 0.25 * bi.biWidth - 1 && i < 0.75 * bi.biWidth) ||
 	    	(j >= 0.875 * biHeight || i >= 0.875 * bi.biWidth) && (i > 0.25 * bi.biWidth - 1 && i < 0.75 * bi.biWidth) ||
-	    	(i > 0.2 * biHeight && i < 0.3 * biHeight && j > 0.2 * bi.biWidth && j < 0.3 * bi.biWidth) ||
-	    	(i > 0.2 * biHeight && i < 0.3 * biHeight && j > 0.6 * bi.biWidth && j < 0.7 * bi.biWidth))
+	    	(i > 0.2 * biHeight && i <= 0.3 * biHeight && j > 0.25 * bi.biWidth && j < 0.3 * bi.biWidth) ||
+	    	(i > 0.2 * biHeight && i <= 0.3 * biHeight && j > 0.62 * bi.biWidth && j < 0.7 * bi.biWidth))
 	    	{
 	    		// first of all define a red color
 	    		triple.rgbtRed = 255;
