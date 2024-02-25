@@ -76,7 +76,8 @@ int main(int argc, char *argv[])
 
     // determine padding for scanlines
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    
+    bi.biSizeImage = (bi.biWidth * sizeof(RGBTRIPLE) + padding) * abs(bi.biHeight);
+    bf.bfSize = bi.biSizeImage + bf.bfOffBits;
     int condition = -1;
 
     // iterate over infile's scanlines
