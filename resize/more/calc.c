@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "bmp.h"
 
 void check(int *w, int *h)
 {
@@ -27,4 +28,5 @@ int main(int argc, char *argv[])
     int width = atoi(argv[1]), height = atoi(argv[2]);
     check(&width, &height);
     printf("Width: %d; Height: %d\n", width, height);
+    printf("Sizeof rgbtriple: %ld\n", sizeof(RGBTRIPLE));
 }
