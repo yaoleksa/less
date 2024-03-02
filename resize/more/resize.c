@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     }
     
     // store n
-    int n = atoi(argv[1]);
+    float n = atof(argv[1]);
     
     // remember filenames
     char *infile = argv[2];
@@ -94,15 +94,15 @@ int main(int argc, char *argv[])
     float w = (float)bi.biWidth, h = (float)abs(bi.biHeight);
     
     // check if multiple by 4
-    if(n != 1 && n%2 != 0 && n != 3 && n != 5)
+    if(n != 1 && (int)n%2 != 0 && n != 3 && n != 5)
     {
     	check(&bi.biWidth, &bi.biHeight);
     }
     
     // determine padding for scanlines
-    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4; printf(" padding: %d\n", padding);
-    bi.biSizeImage = (bi.biWidth * sizeof(RGBTRIPLE) + padding) * abs(bi.biHeight); printf(" biSizeImage: %d\n", bi.biSizeImage);
-    bf.bfSize = bi.biSizeImage + bf.bfOffBits; printf(" bfSize: %d\n", bf.bfSize);
+    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    bi.biSizeImage = (bi.biWidth * sizeof(RGBTRIPLE) + padding) * abs(bi.biHeight);;
+    bf.bfSize = bi.biSizeImage + bf.bfOffBits;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
