@@ -8,22 +8,23 @@
 
 void check(int *w, int *h)
 {
-	if((*w * *h)%4 == 0)
+	int absH = abs(*h);
+	if((*w * absH)%4 == 0)
 	{
 		// Do nothing
 	}
-	else if(((*w + 1) * *h)%4 == 0)
+	else if(((*w + 1) * absH)%4 == 0)
 	{
 		*w = *w + 1;
 	}
-	else if(((*h + 1) * *w)%4 == 0)
+	else if(((absH + 1) * *w)%4 == 0)
 	{
-		*h = *h + 1;
+		*h = *h - 1;
 	}
-	else if(((*w + 1) * (*h + 1))%4 == 0)
+	else if(((*w + 1) * (absH + 1))%4 == 0)
 	{
 		*w = *w + 1;
-		*h = *h + 1;
+		*h = *h - 1;
 	}
 }
 
