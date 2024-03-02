@@ -93,7 +93,10 @@ int main(int argc, char *argv[])
     float w = (float)bi.biWidth, h = (float)abs(bi.biHeight);
     
     // check if multiple by 4
-    check(&bi.biWidth, &bi.biHeight);
+    if(n != 1)
+    {
+    	check(&bi.biWidth, &bi.biHeight);
+    }
     
     // determine padding for scanlines
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
