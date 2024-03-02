@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
     float w = (float)bi.biWidth, h = (float)abs(bi.biHeight);
     
     // check if multiple by 4
-    if(n != 1 && n%2 != 0)
+    if(n != 1 && n%2 != 0 && n != 3 && n != 5)
     {
     	check(&bi.biWidth, &bi.biHeight);
     }
