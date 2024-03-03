@@ -24,19 +24,41 @@ int main(int argc, char *argv[])
 	uint8_t ch[3];
 	int eof;
 	int i = 0;
+	FILE *outfile;
 	while(eof != EOF)
 	{
 		fread(&ch, sizeof(ch) * 3, 1, file);
-		printf("%c %c %c\n", ch[0], ch[1], ch[2]);
 		eof = getc(file);
+		char buffer[19];
 		if(ch[0] == 255 && ch[1] == 216 && ch[2] == 255)
 		{
-			printf("OKI\n");
-			break;
+			if(i < 10)
+			{
+				sprintf(buffer, "00%d.jpeg", i);
+			}
+			else if(i < 100)
+			{
+				sprintf(buffer, "0%d.jpeg", i);
+			}
+			else
+			{
+				sprintf(buffer, "%d.jpeg", i);
+			}
+			if(i > 0)
+			{
+				// Close this file
+				fclose(outfile);
+			}
+			outfile = fopen(buffer, "w");
+			i++;
+			// Write to outfile
+			fwrite(&ch, sizeof(ch), 1, outfile);
 		}
-		i++;
+		// Continue to write
+		//fwrite(&ch, sizeof(uint8_t), 1, outfile);
 	}
-	printf("%d\n", i);
+	// Close .raw file
 	fclose(file);
+	fclose(outfile);
 	return 0;
 }
