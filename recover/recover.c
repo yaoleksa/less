@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	FILE *outfile;
 	while(eof != EOF)
 	{
-		fread(&ch, sizeof(ch) * 3, 1, file);
+		fread(&ch, sizeof(ch), 1, file);
 		eof = getc(file);
 		char buffer[19];
 		if(ch[0] == 255 && ch[1] == 216 && ch[2] == 255)
