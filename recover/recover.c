@@ -58,9 +58,7 @@ int main(int argc, char *argv[])
                 return 3;
             }
             ftruncate(fileno(outfile), 512);
-            fseek(outfile, 0, SEEK_END);
-            printf("size %ld\n", ftell(outfile));
-            //printf("size is %ld\n", size);
+            fwrite(&ch, sizeof(ch), 1, outfile);
             file_opened = 1; // Set flag to indicate outfile is opened
             i++;
         }
