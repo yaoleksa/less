@@ -50,19 +50,18 @@ int main(int argc, char *argv[])
             {
                 fclose(outfile);
             }
-            outfile = fopen(buffer, "w");
+            outfile = fopen(buffer, "wb");
             if(outfile == NULL)
             {
                 fprintf(stderr, "Could not create file %s\n", buffer);
                 fclose(file);
                 return 3;
             }
-            ftruncate(fileno(outfile), 512);
             fwrite(&ch, sizeof(ch), 1, outfile);
             file_opened = 1; // Set flag to indicate outfile is opened
             i++;
         }
-        if(file_opened)
+        else if(file_opened)
         {
             fwrite(&ch, sizeof(ch), 1, outfile);
         }
