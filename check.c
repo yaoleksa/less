@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     // change size
     bi.biHeight = -8;
     bi.biWidth = 8;
-
+ // what ???
     int condition = -1;
 
     // iterate over infile's scanlines
