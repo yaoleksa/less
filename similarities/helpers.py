@@ -10,14 +10,15 @@ def lines(a, b):
     for line in lst:
         if line in a_lst and line in b_lst:
             common_set.add(line)
-    return common_set
+    return list(common_set)
 
 def sentences(a, b):
     """Return sentences in both a and b"""
 
-    a_lst = sent_tokenize(a)
-    b_lst = sent_tokenize(b)
-    return []
+    a_set = set(sent_tokenize(a))
+    b_set = set(sent_tokenize(b))
+    a_set.update(b_set)
+    return list(a_set)
 
 
 def substrings(a, b, n):
