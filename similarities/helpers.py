@@ -1,3 +1,5 @@
+from nltk.tokenize import sent_tokenize
+
 def lines(a, b):
     """Return lines in both a and b"""
     
@@ -13,7 +15,8 @@ def lines(a, b):
 def sentences(a, b):
     """Return sentences in both a and b"""
 
-    # TODO
+    a_lst = sent_tokenize(a)
+    b_lst = sent_tokenize(b)
     return []
 
 
