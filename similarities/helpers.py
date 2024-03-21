@@ -36,5 +36,11 @@ def substrings(a, b, n):
     substr_b = set()
     for i in range(len(b) - n - 1):
         substr_b.add(b[i:i-n-1])
-    substr_a.update(substr_b)
-    return list(substr_a)
+    full = set()
+    full.update(substr_a)
+    full.update(substr_b)
+    common_substr = set()
+    for sub in full:
+        if sub in substr_a and sub in substr_b:
+            common_substr.add(sub)
+    return list(common_substr)
