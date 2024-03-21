@@ -17,11 +17,11 @@ def sentences(a, b):
 
 def substrings(a, b, n):
     """Return substrings of length n in both a and b"""
-
+    
     substr_a = set()
-    for i in range(len(a) - n - 1):
+    for i in range(len(a) - n + 1):
         substr_a.add(a[i:i+n])
     substr_b = set()
-    for i in range(len(b) - n - 1):
-        substr_b.add(b[i:i-n-1])
+    for i in range(len(b) - n + 1):
+        substr_b.add(b[i:i+n])
     return list(substr_a.intersection(substr_b))
