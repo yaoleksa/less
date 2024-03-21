@@ -17,12 +17,24 @@ def sentences(a, b):
 
     a_set = set(sent_tokenize(a))
     b_set = set(sent_tokenize(b))
-    a_set.update(b_set)
-    return list(a_set)
+    full = set()
+    full.update(a_set)
+    full.update(b_set)
+    common_set = set()
+    for sentence in full:
+        if sentence in a_set and sentence in b_set:
+            common_set.add(sentence)
+    return list(common_set)
 
 
 def substrings(a, b, n):
     """Return substrings of length n in both a and b"""
 
-    # TODO
-    return []
+    substr_a = set()
+    for i in range(len(a) - n - 1):
+        substr_a.add(a[i:i+n])
+    substr_b = set()
+    for i in range(len(b) - n - 1):
+        substr_b.add(b[i:i-n-1])
+    substr_a.update(substr_b)
+    return list(substr_a)
